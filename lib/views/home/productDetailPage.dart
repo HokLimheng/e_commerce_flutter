@@ -51,15 +51,17 @@ class _ProductPageState extends State<ProductPage> {
     if(quantityCount > 0){
 
       final cart = context.read<Product>();
+      final orderList = context.read<Product>();
 
       cart.addToCart(widget.product!, quantityCount);
+      orderList.addToOrder(widget.product!, quantityCount);
 
       showDialog(
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
-          title: Text('Success'),
-          content: Text('Item added successfully.', textAlign: TextAlign.center),
+          title: const Text('Success'),
+          content: const Text('Item added successfully.', textAlign: TextAlign.center),
           actions: [
             TextButton(
               onPressed: () {
@@ -74,6 +76,7 @@ class _ProductPageState extends State<ProductPage> {
       );
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -126,13 +129,13 @@ class _ProductPageState extends State<ProductPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(widget.product!.attributes!.title.toString(), style: TextStyle(
+                              Text(widget.product!.attributes!.title.toString(), style: const TextStyle(
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: 'ProductSans',
                               ),
                               ),
-                              Text('\$ ${widget.product!.attributes!.price.toString()}', style: TextStyle(
+                              Text('\$ ${widget.product!.attributes!.price.toString()}', style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 25,
                                 fontFamily: 'ProductSans',
@@ -288,7 +291,6 @@ class _ProductPageState extends State<ProductPage> {
                     const SizedBox(height: 15),
                     // add to cart button
                     ElevatedButton(
-
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.grey,
                         minimumSize: const Size(203, 48),

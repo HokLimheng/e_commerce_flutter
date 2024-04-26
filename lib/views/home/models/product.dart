@@ -31,10 +31,14 @@ class Product extends ChangeNotifier {
   };
 
   // customer cart
-  List<Datum> _cart = [];
+  final List<Datum> _cart = [];
+
+  // order cart
+  final List<Datum> _orderList = [];
 
   // getter methods
   List<Datum> get cart => _cart;
+  List<Datum> get orderList => _orderList;
 
   // add to cart
   void addToCart(Datum product, int quantity){
@@ -42,6 +46,13 @@ class Product extends ChangeNotifier {
       _cart.add(product);
     }
     notifyListeners();
+  }
+
+  // add order
+  void addToOrder(Datum product, int quantity){
+    for(int i=0; i<quantity; i++){
+     _orderList.add(product);
+    }
   }
 
   // remove to cart
@@ -53,6 +64,7 @@ class Product extends ChangeNotifier {
   void clearProduct(){
     _cart.clear();
   }
+
 
 
 }

@@ -51,92 +51,92 @@ class _CartPageState extends State<CartPage> {
         drawer: const MyDrawer(),
         body: Column(
           children: [
-           if(value.cart.isEmpty)
-             Expanded(
-               child: Center(
-                 child: Lottie.asset('assets/images/no_cart.json',
-                   width: 200,
-                   height: 200,
-                 ),
-               ),
-             )
-             else
-             Expanded(
-               child: ListView.builder(
-                 itemCount: value.cart.length,
-                 itemBuilder: (context, index) {
-                   // get product from cart
-                   final Datum cart = value.cart[index];
+            if(value.cart.isEmpty)
+              Expanded(
+                child: Center(
+                  child: Lottie.asset('assets/images/no_cart.json',
+                    width: 200,
+                    height: 200,
+                  ),
+                ),
+              )
+            else
+              Expanded(
+                child: ListView.builder(
+                  itemCount: value.cart.length,
+                  itemBuilder: (context, index) {
+                    // get product from cart
+                    final Datum cart = value.cart[index];
 
-                   final String title = cart.attributes!.title!.toString();
+                    final String title = cart.attributes!.title!.toString();
 
-                   final String price = cart.attributes!.price!.toString();
+                    final String price = cart.attributes!.price!.toString();
 
 
-                   var image = '${CartPage.baseUrl}${cart.attributes!.thumbnail!.data!.attributes!.url!}';
+                    var image = '${CartPage.baseUrl}${cart.attributes!.thumbnail!.data!.attributes!.url!}';
 
-                   return Container(
-                     // padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                     margin: const EdgeInsets.only(left: 16, top: 16, right: 16),
-                     decoration: BoxDecoration(
-                         color: Colors.white,
-                         borderRadius: BorderRadius.circular(12),
+                    return Container(
+                      // padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      margin: const EdgeInsets.only(left: 16, top: 16, right: 16),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
 
-                         boxShadow: [
-                           BoxShadow(
-                             color: Colors.grey.withOpacity(0.4),
-                             spreadRadius: 1,
-                             blurRadius: 9,
-                             offset: Offset(0, 3),
-                           ),
-                         ]
-                     ),
-                     child: Row(
-                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                       crossAxisAlignment: CrossAxisAlignment.center,
-                       children: [
-                         Container(
-                           width: 100,
-                           height: 101,
-                           decoration: BoxDecoration(
-                             borderRadius: BorderRadius.circular(12),
-                             image: DecorationImage(
-                               fit: BoxFit.cover,
-                               image: NetworkImage(image),
-                             ),
-                           ),
-                         ),
-                         Expanded(
-                           child: Container(
-                             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                             child: ListTile(
-                               title: Text(
-                                 title,
-                                 style: const TextStyle(
-                                     color: Colors.black,
-                                     fontWeight: FontWeight.bold,
-                                     fontSize: 18
-                                 ),
-                               ),
-                               subtitle: Text(
-                                 '\$ $price',
-                                 style: TextStyle(color: Colors.grey[700]),
-                               ),
-                             ),
-                           ),
-                         ),
-                         IconButton(
-                           icon: Icon(Icons.delete, color: Colors.grey[700]),
-                           onPressed: () {
-                             removeFromCart(cart, context);
-                           },
-                         ),
-                       ],
-                     ),
-                   );
-                 },
-               ),
-             ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.4),
+                              spreadRadius: 1,
+                              blurRadius: 9,
+                              offset: Offset(0, 3),
+                            ),
+                          ]
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 100,
+                            height: 101,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(image),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                              child: ListTile(
+                                title: Text(
+                                  title,
+                                  style: const TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18
+                                  ),
+                                ),
+                                subtitle: Text(
+                                  '\$ $price',
+                                  style: TextStyle(color: Colors.grey[700]),
+                                ),
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.delete, color: Colors.grey[700]),
+                            onPressed: () {
+                              removeFromCart(cart, context);
+                            },
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
 
             // Proceed to checkout button
             const SizedBox(height: 2),

@@ -1,123 +1,107 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
+import '../home/models/product.dart';
 import '../home/widgets/drawer.dart';
 
-class Order {
-  final String id;
-  final List<CartItem> items;
-  final String shippingMethod;
+class OrderPage extends StatefulWidget {
+  const OrderPage({super.key});
 
-  Order({
-    required this.id,
-    required this.items,
-    required this.shippingMethod,
-  });
-}
-
-class CartItem {
-  final String title;
-  final double price;
-
-  CartItem({
-    required this.title,
-    required this.price,
-  });
-}
-
-class OrderPage extends StatelessWidget {
-  final List<Order> orders = [
-    Order(
-      id: '123',
-      items: [
-        CartItem(title: 'Product 1', price: 9.99),
-        CartItem(title: 'Product 2', price: 14.99),
-      ],
-      shippingMethod: 'Pick up',
-    ),
-    Order(
-      id: '456',
-      items: [
-        CartItem(title: 'Product 3', price: 19.99),
-      ],
-      shippingMethod: 'Free Delivery',
-    ),
-  ];
-
-  OrderPage({super.key});
+  static String baseUrl = "https://cms.istad.co";
 
   @override
+  State<OrderPage> createState() => _OrderPageState();
+}
+
+class _OrderPageState extends State<OrderPage> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-
-      // App Bar
-      appBar: AppBar(
-        title: const Text('My Orders', style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500),),
-        centerTitle: true,
-      ),
-
-      // Drawer
-      drawer: MyDrawer(),
-      // Body
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: ListView.builder(
-          itemCount: orders.length,
-          itemBuilder: (context, index) {
-            final order = orders[index];
-            return OrderCard(order: order);
-          },
+    return Consumer<Product>(
+      builder: (context, value, child) => Scaffold(
+        appBar: AppBar(
+          title: const Text('My Order',
+              style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black)),
         ),
-      ),
-    );
-  }
-}
-
-class OrderCard extends StatelessWidget {
-  final Order order;
-
-  const OrderCard({super.key, required this.order});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8.0),
-      elevation: 4.0,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        drawer: const MyDrawer(),
+        body: Column(
           children: [
-            Text(
-              'Order ID: ${order.id}',
-              style: const TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
+            if (value.orderList.isEmpty)
+              Expanded(
+                child: Center(
+                  child: Lottie.asset(
+                    'assets/images/no_cart.json',
+                    width: 200,
+                    height: 200,
+                  ),
+                ),
+              )
+            else
+              Expanded(
+                child: Container(
+                  margin: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.4),
+                        spreadRadius: 1,
+                        blurRadius: 9,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Card(
+                    margin: EdgeInsets.zero,
+                    elevation: 0.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: ListView.builder(
+                      itemCount: value.orderList.length,
+                      itemBuilder: (context, index) {
+                        // get product from cart
+                        final Datum order = value.orderList[index];
+
+                        final String title = order.attributes!.title!.toString();
+                        final String price = order.attributes!.price!.toString();
+
+                        return Container(
+                          padding: const EdgeInsets.symmetric(vertical: 12.0),
+                          decoration: const BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                color: Colors.grey,
+                                width: 0.5,
+                              ),
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                title,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.0,
+                                ),
+                              ),
+                              Text(
+                                'Price: \$$price',
+                                style: const TextStyle(
+                                  fontSize: 14.0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
               ),
-            ),
-            const SizedBox(height: 8.0),
-            const Divider(),
-            const SizedBox(height: 8.0),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: order.items.length,
-              itemBuilder: (context, index) {
-                final item = order.items[index];
-                return ListTile(
-                  title: Text(item.title),
-                  trailing: Text('\$${item.price.toStringAsFixed(2)}'),
-                );
-              },
-            ),
-            const SizedBox(height: 8.0),
-            const Divider(),
-            const SizedBox(height: 8.0),
-            Text(
-              'Shipping Method: ${order.shippingMethod}',
-              style: const TextStyle(
-                fontSize: 16.0,
-              ),
-            ),
           ],
         ),
       ),
