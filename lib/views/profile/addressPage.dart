@@ -39,7 +39,7 @@ class AddressPage extends StatelessWidget {
               const SizedBox(height: 300),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromRGBO(79, 152, 146, 1),
+                  backgroundColor: Colors.grey[800],
                   minimumSize: const Size(203, 48),
                 ),
                 onPressed: (){},

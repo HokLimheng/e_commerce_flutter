@@ -67,7 +67,7 @@ class _ProductPageState extends State<ProductPage> {
                 Navigator.pop(context);
                 Navigator.pop(context);
               },
-              child: Text('OK'),
+              child: const Text('OK', style: TextStyle(color: Colors.black),),
             ),
           ],
         ),
@@ -219,14 +219,14 @@ class _ProductPageState extends State<ProductPage> {
               ),
               // price, quantity, add cart
               Container(
-                decoration: BoxDecoration(
-                    color: Color.fromRGBO(57, 120, 114, 0.8),
+                decoration: const BoxDecoration(
+                    color: Color.fromRGBO(57, 57, 57, 0.9),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(16),
                     topRight: Radius.circular(16),
                   )
                 ),
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                 child: Column(
                   children: [
                     // price + quantity
@@ -244,8 +244,8 @@ class _ProductPageState extends State<ProductPage> {
                           children: [
                             //decrease button
                             Container(
-                              decoration: BoxDecoration(
-                                  color: Color.fromRGBO(79, 152, 146, 1),
+                              decoration: const BoxDecoration(
+                                  color: Colors.grey,
                                   shape: BoxShape.circle
                               ),
                               child: IconButton(
@@ -270,8 +270,8 @@ class _ProductPageState extends State<ProductPage> {
 
                             // increase button
                             Container(
-                              decoration: BoxDecoration(
-                                  color: Color.fromRGBO(79, 152, 146, 1),
+                              decoration: const BoxDecoration(
+                                  color: Colors.grey,
                                   shape: BoxShape.circle
                               ),
                               child: IconButton(
@@ -285,12 +285,12 @@ class _ProductPageState extends State<ProductPage> {
                         )
                       ],
                     ),
-                    const SizedBox(height: 25,),
+                    const SizedBox(height: 15),
                     // add to cart button
                     ElevatedButton(
 
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(79, 152, 146, 1),
+                        backgroundColor: Colors.grey,
                         minimumSize: const Size(203, 48),
                       ),
                       onPressed: (){

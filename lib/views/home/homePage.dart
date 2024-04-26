@@ -53,7 +53,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       // App Bar
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(120, 184, 192, 1),
         title: const Text(
           'NemoStore',
           style: TextStyle(
@@ -84,29 +83,7 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Search Bar
-              Container(
-                margin: const EdgeInsets.only(top: 10, bottom: 25, right: 0, left: 0),
-                child: TextField(
-                  onChanged: (value){
-                    // _productViewModel.search(value);
-                  },
-                  style: const TextStyle(
-                    color: Colors.black,
-                  ),
-                  decoration: InputDecoration(
-                    hintText: 'What are you looking for...',
-                    hintStyle: const TextStyle(
-                      fontFamily: 'ProductSans',
-                    ),
-                    prefixIcon: const Icon(Icons.search_rounded),
-                    enabledBorder: border,
-                    focusedBorder: border,
-                    fillColor: Colors.grey.withOpacity(0.1),
-                    filled: true,
-                  ),
-                ),
-              ),
+
 
               // Discount container
               Container(
@@ -167,8 +144,8 @@ class _HomePageState extends State<HomePage> {
                           });
                         },
                         child: Chip(
-                          labelStyle: const TextStyle(fontSize: 16),
-                          backgroundColor: selectedFilter == filter ? const Color.fromRGBO(120, 184, 192, 1) : const Color.fromRGBO(245, 247, 249, 1),
+                          labelStyle: selectedFilter == filter ?  const TextStyle(fontSize: 16, color: Colors.white) : const TextStyle(fontSize: 16, color: Colors.black) ,
+                          backgroundColor: selectedFilter == filter ? Colors.black87 : const Color.fromRGBO(245, 247, 249, 1),
                           side: const BorderSide(
                             color: Color.fromRGBO(245, 247, 249, 1),
                           ),

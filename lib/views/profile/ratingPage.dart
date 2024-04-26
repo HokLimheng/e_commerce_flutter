@@ -52,7 +52,7 @@ class RatingPage extends StatelessWidget {
               // Send Feedback button
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromRGBO(79, 152, 146, 1),
+                  backgroundColor: Colors.grey[800],
                   minimumSize: const Size(203, 48),
                 ),
                 onPressed: (){},

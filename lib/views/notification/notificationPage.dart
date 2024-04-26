@@ -48,7 +48,6 @@ class _NotificationPageState extends State<NotificationPage> {
     return Scaffold(
       // App Bar
       appBar: AppBar(
-        backgroundColor: Colors.teal.shade400,
         title: const Text(
           'NemoStore',
           style: TextStyle(

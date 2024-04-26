@@ -44,7 +44,7 @@ class ProfilePage extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileSetting()));
                         },
-                  child: Text('Edit Profile'),
+                  child: Text('Edit Profile', style: TextStyle(color: Colors.grey[600]),),
                 ),
                 const SizedBox(height: 10,),
                 const Divider(),

@@ -25,7 +25,7 @@ class _MyDrawerState extends State<MyDrawer> {
             children: [
               UserAccountsDrawerHeader(
                 decoration:  BoxDecoration(
-                  color: Color.fromRGBO(120, 184, 192, 0.7), // Set the background color of the UserAccountsDrawerHeader
+                  color: Colors.grey[300] // Set the background color of the UserAccountsDrawerHeader
                 ),
                 currentAccountPicture: Container(
                   decoration: BoxDecoration(
@@ -83,6 +83,7 @@ class _MyDrawerState extends State<MyDrawer> {
               const ListTile(
                 title: Text('OTHER', style: TextStyle(fontSize: 14),),
               ),
+              Divider(),
               buildCustomListTile(
                   onTap: (){
                       Navigator.pop(context);

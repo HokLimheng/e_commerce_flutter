@@ -30,7 +30,10 @@ class MyApp extends StatelessWidget {
           )
         ),
 
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.grey,
+          primary: Colors.grey,
+        ),
         useMaterial3: true,
       ),
       home: const IntroPage(),

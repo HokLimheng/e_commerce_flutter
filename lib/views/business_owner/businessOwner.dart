@@ -31,8 +31,9 @@ class _BusinessOwnerState extends State<BusinessOwner> {
 
 
     return Scaffold(
+      // app bar
       appBar: AppBar(
-        title: Text('Business Owner', style: TextStyle(fontWeight: FontWeight.w500),),
+        title: Text('Business Owner', style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black)),
         actions: [
           IconButton(onPressed: (){
             Navigator.of(context).push(

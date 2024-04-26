@@ -32,8 +32,9 @@ class _PostProductState extends State<PostProduct> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      // appbar
       appBar: AppBar(
-        title: Text('Post New Product ', style: TextStyle(fontWeight: FontWeight.w500),),
+        title: Text('Post New Product ', style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black),),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(12),
@@ -195,7 +196,7 @@ class _PostProductState extends State<PostProduct> {
                   ),
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               ChangeNotifierProvider(
                 create: (context) => _productViewModel,
                 child: Consumer<ProductViewModel>(
@@ -203,10 +204,14 @@ class _PostProductState extends State<PostProduct> {
                     if(viewModel.response.status == null){
                       print(viewModel.response.status);
                       return ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.grey[800],
+                        ),
+
                         onPressed: (){
                           _saveProduct();
                         },
-                        child: const Text('Post'),);
+                        child: const Text('Post', style: TextStyle(color: Colors.white),),);
                     }
                     switch(viewModel.response.status!){
                       case Status.LOADING:

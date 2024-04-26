@@ -49,7 +49,7 @@ class _UpdateProductState extends State<UpdateProduct> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Update Product ', style: TextStyle(fontWeight: FontWeight.w500),),
+        title: Text('Update Product ', style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black),),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(12),
@@ -166,10 +166,13 @@ class _UpdateProductState extends State<UpdateProduct> {
                   builder: (ctx, viewModel, _){
                     if(viewModel.response.status == null){
                       return ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.grey[800],
+                          ),
                         onPressed: (){
                           _saveProduct();
                         },
-                        child: const Text('Update'),);
+                        child: const Text('Update', style: TextStyle(color: Colors.white),));
                     }
                     switch(viewModel.response.status!){
                       case Status.LOADING:
